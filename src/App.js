@@ -1,37 +1,29 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-//! COMPONENTS
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";import MyProfile from "./Pages/MyProfile";
 
-//! PAGES
-import HomePage from "./Pages/HomePage";
-import Profile from "./Pages/Profile";
-import NotFound from "./Pages/NotFound";
-import MyProfile from "./Pages/MyProfile";
-
-//! CONTEXT
-import { ThemeProvider } from "./Context/ThemeContext";
 
 
 function App() {
 
   return (
-    <div className="flex flex-col justify-between h-screen">
-      <ThemeProvider>
+    <div className="flex flex-col justify-between h-screen bg-indigo-900 overflow-auto">
         <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/myprofile" element={<MyProfile />} />
-            <Route path="/404" element={<NotFound />} />
-            <Route path="/:username" element={<Profile />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
+          <Header />         
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/myprofile" element={<MyProfile />} />
+              <Route path="/:username" element={<Profile />} />   
+            </Routes>
+          <ToastContainer className={"mt-16 mr-5"}/>
           <Footer />
         </Router>
-      </ThemeProvider>
+
     </div>
   );
 }
